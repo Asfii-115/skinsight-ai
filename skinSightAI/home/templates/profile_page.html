@@ -1,0 +1,195 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile Page</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/profile.css' %}"
+    />
+    <!-- Include Bootstrap CSS (CDN) -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    />
+  </head>
+  <!-- <body>
+    <h1>Welcome to your profile, {{ user_profile.user.username }}</h1>
+    <p>Full Name: {{ user_profile.full_name }}</p>
+    <p>Email: {{ user_profile.user.email }}</p>
+    <p>Phone Number: {{ user_profile.phone_number }}</p>
+    Add other user information fields here -->
+  <!-- </body> -->
+
+  <body>
+    <div class="banner">
+      <nav>
+        <div class="navbar" style="background-color: #313866">
+          <img src="{% static 'img/logo-color.png' %}" class="logo" />
+
+          <ul>
+            <li><a href="{% url 'home_page' %}">Home</a></li>
+            <li><a href="{% url 'feature_page2' %}">Features</a></li>
+            <li><a href="{% url 'about2' %}">About Us</a></li>
+            <li><a href="{% url 'contact2' %}">Contact Us</a></li>
+            <li><a href="{% url 't&c_page2' %}">T&C</a></li>
+            <li><a href="{% url 'profile_page' %}">Profile</a></li>
+
+            <li><a href="{% url 'faq_page2' %}">FAQ</a></li>
+
+            <li>
+              <a href="{% url 'artificial_intelligence2' %}"
+                >Artificial Intelligence</a
+              >
+            </li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+
+            
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div
+      class="container light-style flex-grow-1 container-p-y"
+      style="margin-bottom: 2%"
+    >
+      <h4 class="font-weight-bold py-3 mb-4">Profile</h4>
+      <div class="card overflow-hidden">
+        <div class="row no-gutters row-bordered row-border-light">
+          <div class="col-md-3 pt-0">
+            <div class="list-group list-group-flush account-settings-links">
+              <a
+                class="list-group-item list-group-item-action active"
+                data-toggle="list"
+                href="#account-general"
+                >General</a
+              >
+              <a class="list-group-item list-group-item-action active"
+              
+              href="{% url 'result_history' %}">Result History</a>
+              <a class="list-group-item list-group-item-action active"
+               href="{% url 'history' %}">Payment History</a>
+              
+            
+            </div>
+          </div>
+          <div class="col-md-9">
+            <div class="tab-content">
+              <div class="tab-pane fade active show" id="account-general">
+                <div class="card-body media align-items-center">
+                  <img src="{% if user_profile.profile_picture %}{{ user_profile.profile_picture.url }}{% else %}{% static 'img/default-profile.jpg' %}{% endif %}" alt class="d-block ui-w-80" />
+
+                  <div class="media-body ml-4">
+                      <form method="post" enctype="multipart/form-data">
+                          {% csrf_token %}
+                          <!-- Display the file input field without "No file chosen" text -->
+                          <div class="form-group">
+                              <label class="form-label">Profile Picture</label>
+                              <input type="file" name="profile_picture" accept="image/*" id="profile-picture-input" style="display: none;" />
+                              <label for="profile-picture-input" class="btn btn-outline-primary">Choose a photo</label>
+                          </div>
+                          <button type="submit" class="btn btn-primary">Upload new photo</button>
+                      </form>
+                  </div>
+                </div>
+              
+              </div>  
+            </div>
+              
+                <hr class="border-light m-0" />
+                <div class="card-body">
+                  <div class="form-group">
+                    <label class="form-label">UserName</label>
+                    <input
+                      type="text"
+                      class="form-control mb-1"
+                      value="{{ user_profile.user.username }}"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Full Name</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      value="{{ user_profile.full_name }}"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input
+                      type="text"
+                      class="form-control mb-1"
+                      value="{{ user_profile.user.email }}"
+                    />
+                    
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Phone Number</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      value="{{ user_profile.phone_number }}"
+                    />
+                  </div>
+                </div>
+              </div>
+              
+            
+              
+          </div>
+        
+      
+      <div class="text-right mt-3">
+        <button style="margin-bottom: 5%;" type="button" class="btn btn-primary">Save changes</button
+        >&nbsp;
+        <button style="margin-bottom: 5%; color:red;" type="button" class="btn btn-default">Cancel</button>
+      
+      </div>
+      
+    </div>
+    
+    <div class="cont3" style="display: flex; justify-content: center; align-items: center; margin-top: 3%; margin-bottom: 1%;">
+      <h2 style="margin: 0; ">Make Your Payment Here</h2>
+      
+      
+    </div>
+    <div class="cont3" style="display: flex; justify-content: center; align-items: center; margin-top: 1%; margin-bottom: 1%;">
+      <h3>Payment amount: 500 BDT</h3>
+      
+      
+    </div>
+  
+    
+    <div class="cont3" style="display: flex; align-items: center; padding: 2%; width: 20%;"> 
+      <button type="button"   style="flex: 1; background-color: rgb(71, 178, 228); color: white; padding: 1% 2% 1% 2%; font-size: 12px; border: none; cursor: pointer;"><a href="{% url 'payment_page' %}" style="text-decoration: none; "><h3>Pay Now</h3></a></button>
+    </div>
+    <script
+      data-cfasync="false"
+      src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js">
+    const scrollToTopButton = document.getElementById("scrollToTopBtn");
+
+window.onscroll = () => {
+    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+        scrollToTopButton.style.display = "block";
+    } else {
+        scrollToTopButton.style.display = "none";
+    }
+};
+
+scrollToTopButton.addEventListener("click", () => {
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE, and Opera
+});
+    </script>
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript"></script>
+  </body>
+</html>

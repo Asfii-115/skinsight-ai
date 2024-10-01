@@ -1,0 +1,176 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        .blue-div {
+            background: linear-gradient(to left, #14cfeb, #025197);
+            padding: 20px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scan</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/scan.css' %}">
+    <!-- Include Bootstrap CSS (CDN) -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <div class="banner" style=" background-image: url('{%static 'img/istockphoto-1181454268-612x612.jpg'%}');">
+       <nav> 
+        <div class="navbar">
+            <img src="{% static 'img/logo-color.png' %}" class="logo">
+            
+            <ul>
+                <li><a href="{% url 'home_page' %}">Home</a></li>
+            <li><a href="{% url 'feature_page2' %}">Features</a></li>
+            <li><a href="{% url 'about2' %}">About Us</a></li>
+            <li><a href="{% url 'contact2' %}">Contact Us</a></li>
+            <li><a href="{% url 't&c_page2' %}">T&C</a></li> 
+            <li><a href="{% url 'profile_page' %}">Profile</a></li> 
+
+            <li><a href="{% url 'faq_page2' %}">FAQ</a></li> 
+
+            <li><a href="{% url 'artificial_intelligence2' %}">Artificial Intelligence</a></li>
+            
+
+            
+            <li><a href="{% url 'logout' %}">Logout</a></li> 
+            </ul>
+            
+        </div>
+    </nav>
+        <div class="content" style="background-color: 	#3580a0; opacity: .8;">
+            <h1>Scan your Skin </h1>
+            <p style="font-size:xx-small; color: black;"><h6>The scan result is not a diagnosis. To obtain an accurate diagnosis and a recommendation for treatment - consult your doctor. </h3></p>
+        </div>
+
+    </div>
+    <!-- Header -->
+
+    
+
+    {% block content %}
+    <div class="blue-div">
+        <center><h2><p>You can scan 5 times for each payment</p></h2>
+        <div id="userData">
+            <!-- Display the number of scans left here -->
+            <h3><p>Scans left: </p></h3></center>
+            <center><div style="background: linear-gradient(to left, 	#ff5577, #aa0022, 	#ff5577); width: 10%; border-radius: 15%;">
+                <center><h2 style="color: white">{{ user_profile.value }} times</h2></center>
+            </div></center>
+            
+        </div>
+    </div>
+   
+    
+    
+    
+    
+    
+    
+    
+    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh;">
+        <h2>Upload an Image</h2>
+        <form method="post" enctype="multipart/form-data" style="display: flex; flex-direction: column; align-items: center;">
+            {% csrf_token %}
+            <label for="{{ form.image.id_for_label }}">Choose an Image:</label>
+            <img src="{% static 'img/upload.png' %}" alt="Upload" style="width: 100px; height: 100px; margin: 10px;">
+            {{ form.image }}
+            <div style="margin-top: 20px;">
+                <button type="submit" style="background-color: green; color: white; padding: 12px 30px; border: none; cursor: pointer;">Upload</button>
+            </div>
+        </form>
+    </div>
+    {% endblock %}
+    
+
+    
+
+</div>
+
+    </div>
+    
+
+<!--Footer-->
+<footer>
+    <div class="container">
+        <div class="row">
+              <div class="col" id="company"  >
+                  <img src="{% static 'img/logo-color.png' %}" style="height: 50px; width: 50px;">
+                  <h3>
+                    SkinSight Ai is not intended to perform diagnosis, but rather to provide users the ability to image, track, and better understand their moles.
+                  </h3>
+                  
+              </div>
+
+
+              <div class="col" id="useful-links">
+                <h3>Links</h3>
+                <div class="links">
+                 <a href="{% url 'about' %}">About Us</a>
+                 <a href="{% url 'feature_page' %}">Features</a>
+                 <a href="">Artificial Intelligence</a>
+                   <a href="{% url 'contact' %}">Contact Us</a>
+                   <a href="{% url 'register_page' %}">Register</a>
+                <a href="{% url 't&c_page' %}">T&C</a>
+
+                   <a href="">FAQ</a>
+                </div>
+             </div>
+
+             <div class="col" id="company">
+                <h3>
+                    If you have any question about our AI system - contact with us through email:
+                </h3>
+                <h5>support@skinsight-ai.com
+                </h5>
+                <div class="social">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                  </div>
+                
+            </div>
+        
+        </div>
+
+        <div class="row">
+              <div class="form">
+                <form action="">
+                    <input type="text" placeholder="Email here...">
+                    <button><i class="fa fa-paper-plane"></i></button>
+                </form>
+              </div>
+        </div>
+
+    </div>
+    <!-- <button id="scrollToTopBtn">Scroll to Top</button> -->
+    <i class="fa-solid fa-angles-up" id="scrollToTopBtn"></i>
+ </footer>
+<b style="font-style: italic; color: red; padding: 20px 0 20px 0;"><center>SkinSight AI | All Rights Reserved. Copyright © 2023
+</center></b>
+<script >
+    // src="{% static 'js/faq.js' %}"
+
+const scrollToTopButton = document.getElementById("scrollToTopBtn");
+
+window.onscroll = () => {
+    if (document.body.scrollTop > 1000 || document.documentElement.scrollTop > 1000) {
+        scrollToTopButton.style.display = "block";
+    } else {
+        scrollToTopButton.style.display = "none";
+    }
+};
+
+scrollToTopButton.addEventListener("click", () => {
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE, and Opera
+});
+</script>
+</body>
+</html>
